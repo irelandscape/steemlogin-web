@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.8.5/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.8.5/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.8.5/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.8.5/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.8.5/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/steemlogin.css">
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+  </head>
+  <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+            <div class="pure-menu">
+                <a class="pure-menu-heading" href="#">SteemLogin</a>
+
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-selected">
+                        <a href="#" class="pure-menu-link">Home</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="#" class="pure-menu-link">FAQ</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="/register.html" class="pure-menu-link">Register your App</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="#" class="pure-menu-link">Developers</a>
+                    </li>
+
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Support</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Terms of Use</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>SteemLogin</h1>
+                <h2>An easier way to sign in to Steem apps from any device!</h2>
+            </div>
+
+            <div class="content">
+                <img src='https://i.postimg.cc/hv46YzWL/steemlogin.png' border='0' alt='steemlogin'/>
+
+                <h2 class="content-subhead">What is SteemLogin?</h2>
+                <p>
+                    SteemLogin provides a very easy way for Steem users to sign in to their favourite applications.
+                </p>
+                <p>
+                    Unlike other utilities, such as <a href="https://app.steemconnect.com">SteemConnect</a>, SteemLogin allows users to authenticate themselves using mainstream authentication providers such as Google and Facebook.
+                </p>
+                <p>
+                    On the first authentication, users are requested to provide their Steem username and Posting Key which are then stored within a secure database and returned to the Steem application.
+                </p>
+                <p>
+                    From then on, the sign-in process simply consists in users authenticating themselves with their provider of choice - be it Google, Facebook, Twitter or GitHub.
+                </p>
+                <p>
+                    Upon each successful authentication with one of the above providers, the Steem username and posting key are retrieved from the SteemLogin database and passed back to the Steem application.<br/>
+                </p>
+                <p>
+                    <strong>Users never need ever again to enter their complicated 50 character hash posting key across all supported Steem apps and devices!</strong>
+                </p>
+
+
+                <h2 class="content-subhead">Why use SteemLogin?</h2>
+                <p>
+                    A posting key looks like this:
+                    <pre>5K7dsflOerj8324lfsdf0lfsKDFSL0284kF9KFWl85skdfk37ks</pre>
+                </p>
+                <p>
+                    This is a 50 character hash which is impossible to memorize and difficult to enter without making any mistakes.<br/>
+                </p>
+                <p>
+                    While such passwords are very awkward to type in on a PC/laptop, the task becomes even more painful when using handheld devices.
+                </p>
+                <p>
+                    <strong>In our opinion this is one of the main barriers standing in the way for wide adoption of Steem applications!</strong>
+                </p>
+                <p>
+                    In this day and age people have come to expect being able to login to most applications using mainstream content providers and social networks.
+                </p>
+                <p>
+                    <strong>This is the user experience that SteemLogin will provide to your Steem app!</strong>
+                </p>
+
+                <h2 class="content-subhead">How does it work?</h2>
+                <p>
+                    Upon signing in to the application the user will be redirected to the SteemLogin authentication portal.
+                </p>
+                <p>
+                    There, he/she will be presented with the following authentication options:
+                </p>
+                <img src='https://i.postimg.cc/434WpLZb/Screenshot-2019-03-06-13-58-15.png' border='0' alt='Authentication choices'/>
+                <p>
+                    The user selects his/her authentication provider of choice and completes the verification procedure that he/she is accustomed to.
+                </p>
+                <p>
+                    The user should be asked by the provider to authorize SteemLogin for authentication.
+                </p>
+                <img src='https://i.postimg.cc/LXg46Vq2/Screenshot-2019-03-06-14-04-05.png' border='0' alt='Authorisation request'/>
+                <p>
+                    Upon successfully authenticating with the provider, the user is redirected to the SteemLogin application.
+                </p>
+                <p>
+                    SteemLogin checks if the user Steem details (username and posting key) is available in its database and if these details are still valid.
+                </p>
+                <p>
+                    If this is the case, he/she is automatically redirected to the Steem application. A unique authorization code is also supplied to the application.
+                </p>
+                <p>
+                    The Steem application securely retrieves the Steem username and posting key from SteemLogin by supplying the authorization code.
+                </p>
+                <p>
+                    The Steem application can now use the Steem username and posting key with the Steem blockchain for all operations requiring authentication.<br/>
+                    The user is logged in.
+                </p>
+                <img src='https://i.postimg.cc/DZzWnshc/Screenshot-2019-03-06-14-19-46.png' border='0' alt='User is logged in'/>
+                <h2 class="content-subhead">What if the user Steem details are not available or changed?</h2>
+                <p>
+                    Upon authentication with the external provider SteemLogin checks if a valid Steem username and posting key are stored in its database.
+                </p>
+                <p>
+                    If not, the user is presented with a form allowing him/her to type in those details.
+                </p>
+                <img src='https://i.postimg.cc/zGVqjrN0/Screenshot-2019-03-06-14-22-46.png' border='0' alt='Steem details form'/>
+                <p>
+                    The Steem details are automatically checked before allowing the user to submit the form and be redirected to the Steem app.
+                </p>
+
+                <h2 class="content-subhead">Is SteemLogin secure?</h2>
+                <p>
+                    With many wisely urging people not to share their keys with anybody it is only natural to wonder if posting keys are safely stored by SteemLogin.
+                </p>
+                <p>
+                    <strong>We take the safety of your posting key extremely seriously!</strong>
+                </p>
+                <p>
+                    For this reason we have decided <strong>not</strong> to store your Steem details on our own servers, but instead to use the services of <a href="https://firebase.google.com">Firebase</a>, a Google owned company which takes extreme care in securing data on behalf of their customers.
+                </p>
+                <p>
+                    SteemLogin makes use of the <a href="https://firebase.google.com/docs/firestore">Cloud Firestore</a> database product which automatically encrypts all data on the disk and prevents logged in users from accessing database records created by other users.
+                </p>
+                <p>
+                    Furthermore, all information exchanged between SteemLogin and the Steem applications is encrypted using HTTPs.
+                </p>
+                <p>
+                    SteemLogin does not store any other information about a user but the Steem username and posting key. Google/FB/Twitter/GitHub authentication tokens and other sensitive information is <strong>not</strong> stored within our database but is simply passed back to the Steem application over HTTPs.
+                </p>
+                <p>
+                    Finally one must remember what can be done with the posting key.
+                </p>
+                <p>
+                    The posting key allows a user to post, edit, upvote, and resteem content on the Steem blockchain. It also enables following other Steem users.
+                </p>
+                <p>
+                    The posting key <strong>does not allow</strong> one to make financial transactions (such as transfering Steems or SBDs), change personal information or other passwords.
+                </p>
+                <p>
+                    <strong>SteemLogin will not allow users to store accidently other more sensitive keys such as the active or owner keys!</strong>
+                </p>
+
+                <h2 class="content-subhead">Is SteemLogin opensource and who is behind the project?</h2>
+                <p>
+                    SteemLogin is opensource and can be downloaded and examined from our <a href="https://github.com/irelandscape/steemlogin">GitHub repository</a>
+                </p>
+                <p>
+                    The software is maintained by <a href="https://steempeak.com/@irelandscape">@irelandscape</a>.
+                </p>
+
+                <h2 class="content-subhead">Is it free?</h2>
+                <p>
+                    Yes, SteemLogin is completely free!
+                </p>
+
+                <h2 class="content-subhead">Where can I see SteemLogin in action?</h2>
+                <p>
+                    SteemLogin has just been launched so the number of supporting apps is still limited, though growing steadily.
+                </p>
+                <p>
+                    Check out <a href="https://www.stemq.io">StemQ</a> to see SteemLogin at work.<br/>
+                    Simply click that LOGIN button!
+                </p>
+
+                <h2 class="content-subhead">I'm in! Where do I start?</h2>
+                <p>
+                    If you would like to integrate SteemLogin within your app, simply <a href="/register.html">register you app</a> and check our <a href="/developers.html">Developers</a> page to find out how easy it is to upgrade your code!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+</html>
