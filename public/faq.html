@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SteemLogin</title>
 
+    <link rel="stylesheet" href="css/steemlogin.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
         <!--[if lte IE 8]>
             <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-            <link rel="stylesheet" href="css/steemlogin.css">
             <link rel="stylesheet" href="css/layouts/side-menu.css">
         <!--<![endif]-->
     <script>
@@ -44,9 +44,53 @@
                 </p>
 
                 <h2 class="content-subhead">What if I enter the wrong key by accident?</h2>
+                <p>
+                  SteemLogin automatically verifies that users enter an existing Steem username along with the matching private posting key.<br/>
+                  The user won't be able to store any other key or invalid details.
+                </p>
                 <h2 class="content-subhead">Where does SteemLogin store my Steem details?</h2>
+                <p>
+                  Steem usernames and private posting keys are stored within <a href="https://firebase.google.com/docs/firestore">Cloud Firestore</a>, a database service provided by <a href="https://firebase.google.com">Firebase</a> and part of the <a href="https://cloud.google.com/">Google Cloud Platform</a>.
+                </p>
+                <p>
+                  Cloud Firestores automatically encrypts and decrypts data as it is stored and retrieved from the database.
+                </p>
+                <p>
+                  Database rules prevent a user (authenticated or not) to access the Steem username and posting key of another user.
+                </p>
                 <h2 class="content-subhead">What happens if I change my posting key?</h2>
+                <p>
+                  SteemLogin verifies the validity of the Steem username and posting key upon each user authentication.
+                </p>
+                <p>
+                  If the Steem details verification fails, the user is prompted to enter a new valid Steem username and posting key.
+                </p>
+
                 <h2 class="content-subhead">What information does SteemLogin provide to the Steem application?</h2>
+                <p>
+                  SteemLogin supplies the Steem username and private posting key of the authenticated user to the Steem application along with the authentication provider identity (e.g. 'google.com') and the authentication tokens provided by this authentication provider.
+                </p>
+                <p>
+                  The authorization scope requested by SteemLogin to the authentication provider is minimalistic at this stage.
+                  That is, the authentication tokens returned to the Steem application provide access to very few services theoritically offered by the authentication provider.
+                </p>
+                <p>
+                  Future versions of SteemLogin may expand on this and allow the Steem application to request wider authorization scopes from the authentication providers. This could be used in the future to provide better integration between the Steem applications and Google, Facebook, etc.
+                </p>
+
+                <h2 class="content-subhead">Do you provide an SDK?</h2>
+                <p>
+                  No, SteemLogin doesn't provide any software development kit.
+                </p>
+                <p>
+                  Instead your application should be able to:
+                    <ul>
+                      <li>Redirect the user to the SteemLogin authentication URL.</li>
+                      <li>Service an authentication success/failure URL over HTTPs</li>
+                      <li>Initiate an HTTPs GET request to retrieve the user details</li>
+                    </ul>
+                </p>
+                This is explained in details on our <a href="/dev.html">Developers</a> page.
             </div>
         </div>
     </div>

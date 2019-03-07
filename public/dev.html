@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <link rel="stylesheet" href="/css/steemlogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/menu.html').then(response => response.text())
+          .then(html => document.getElementById('menu').innerHTML = html)
+        })
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.min.js"></script>
+  </head>
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Add SteemLogin to your app!</h1>
+            </div>
+
+            <div class="content">
+              <p>
+                Integrating your Steem application with SteemLogin is <strong>easy!</strong>
+              </p>
+              <p>
+                Simply follow the instructions below and you will be up and running in a very short amount of time.
+              </p>
+
+              <h2 class="content-subhead">
+                1. Add a "Sign In", or "Login" link to your app
+              </h2>
+
+              <p>
+                The link should specify the following URL:
+                <pre>
+                  https://auth.steemlogin.net
+                </pre>
+                along with your application name registered with SteemLogin (see <a href="/register.html">Register your App</a> for more details), as a query parameter.
+              </p>
+              <p>
+                In its simplest form the link can be provided as an anchor tag, as follows:
+                <pre class="brush: xml">
+                  <a href="https://auth.steemlogin.net?app=StemQ">LOGIN</a>
+                </pre>
+              </p>
+
+              <h2 class="content-subhead">
+                2. Servicing your Authentication Success URL
+              </h2>
+
+              <p>
+                Upon successfully authenticating with SteemLogin users will be redirected to your Success URL.
+              </p>
+              <p>
+                A unique <strong>authorization code</strong> will be suppllied to your app within the query parameters. For example:
+                <pre>https://localhost:8080/steemlogin/success?authCode=OI7SXfO5H8oBBJbYLCPiT220mpXGz83DDmdZIBeNHikX</pre>
+              </p>
+
+              <p>
+                To retrieve the user details, you should now supply the authorization code to a GET HTTPs request addressed to the following URL:
+                <pre>https://auth.steemlogin.net?authDetails&authCode=OI7SXfO5H8oBBJbYLCPiT220mpXGz83DDmdZIBeNHikX</pre>
+              </p>
+
+              <p>
+                The above request should return a 200 HTTP status code along with JSON encoded data in the response body.
+              </p>
+
+              <p>
+                The response data will include among other things:
+              </p>
+              <ul>
+                <li><strong>steemUsername</strong>: The Steem username</li>
+                <li><strong>steemPostingKey</strong>: The Steem posting key</li>
+                <li><strong>providerId</strong>: Identifies which provider was used to authenticate the user (e.g. 'google.com')</li>
+              </ul>
+
+              <h2 class="content-subhead">
+                3. Store and use the user details securely
+              </h2>
+              <p>
+                It is now the responsibility of your application to store the user information securely.<br/>
+                We recommend encrypting all sensitive information returned by SteemLogin within the client side of your application (e.g. browser).<br/>
+                For example, this can be achieved using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto" alt="Subtle Crypto API">Subtle Crypto API</a> and storing the encryption key within a <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" alt="indexedDB">indexedDB database</a>
+              </p>
+
+              <h2 class="content-subhead">
+                4. If you are migrating from Steemconnect to SteemLogin
+              </h2>
+              <p>
+                Updating your code to make use of the Steem username and posting key instead of the Steemconnect token to initiate an operation on the Steem blockchain is easy.
+              </p>
+              <p>
+                We recommend using <a href="https://github.com/jnordberg/dsteem" alt="dsteem">dsteem</a> to make the process easy as bot SteemConnect and dsteem APIs are quite similar.
+              </p>
+
+			  <p>
+                Below is an example that illustrates how authentication details would be decrypted and used to upvote a particular post.
+              </p>
+              <pre class="brush: js">
+   decryptAuthDetails(encryptedAuthDetails,
+        .then((authDetails) => {
+          dsteem.broadcast.vote(                                                                                         
+            {
+              voter: authDetails.steemUsername,
+              author: blog.author,
+              permlink: blog.permlink,
+              weight: voteWeight
+            },
+            PrivateKey.fromString(authDetails.steemPostingKey)
+          ).then(() => {
+			...
+          }).catch((err) => {
+			...
+          })
+        })
+		  </pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+    <script type="text/javascript">
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>
+

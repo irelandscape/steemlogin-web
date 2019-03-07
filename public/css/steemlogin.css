@@ -5,3 +5,15 @@ img {
     max-width: 100%;
 }
 
+table.info {
+  border: 1px solid #cccccc;
+}
+
+table.info tr {
+  border: 1px solid #cccccc;
+}
+
+table.info td, th {
+  padding: 1rem;
+  vertical-align: top;
+}

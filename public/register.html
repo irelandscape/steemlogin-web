@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <link rel="stylesheet" href="/css/steemlogin.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/menu.html').then(response => response.text())
+          .then(html => document.getElementById('menu').innerHTML = html)
+        })
+    </script>
+  </head>
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Register your app!</h1>
+            </div>
+
+            <div class="content">
+                <p>
+                  Registering your Steem application is easy!<br/>
+                  Simply submit the details below on our <a href="https://discord.gg/nkzqpJb" alt="register-your-app">Discord Server</a>.
+                </p>
+
+                <table class="info">
+                  <tr>
+                    <th>Information</th>
+                    <th>Mandatory</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <th>App Name</th>
+                    <td>YES</td>
+                    <td>
+                      This is the name uniquely identifying your application.<br/>
+                      This name will have to be supplied by your application when redirecting your users to the SteemLogin authentication site.<br/>
+                    </td>
+                    <td>
+                      StemQ
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Success URL</th>
+                    <td>YES</td>
+                    <td>
+                      This should be a URL serviced by your app.<br/>
+                      Users will be redirected to this URL upon successful authentication and Steem details have been retrieved.
+                    </td>
+                    <td>
+                      https://www.stemq.io/steemlogin/success
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Failure URL</th>
+                    <td>YES</td>
+                    <td>
+                      This should be a URL serviced by your app.<br/>
+                      Users will be redirected to this URL if the user failed to authenticate itself with one of the authentication providers, or the Steem details were not retrieved successfully.
+                    </td>
+                    <td>
+                      https://www.stemq.io/steemlogin/failure
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Deveopment Success URL</th>
+                    <td>NO</td>
+                    <td>
+                      This URL can be specified to redirect users to your development site after successful authentication.
+                    </td>
+                    <td>
+                      https://localhost:8080/steemlogin/success
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Deveopment Failure URL</th>
+                    <td>NO</td>
+                    <td>
+                      This URL can be specified to redirect users to your development site after failure to authenticate or retrieved the Steem details
+                    </td>
+                    <td>
+                      https://localhost:8080/steemlogin/failure
+                    </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+</html>
