@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/steemlogin.css">
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/menu.html').then(response => response.text())
+          .then(html => document.getElementById('menu').innerHTML = html)
+        })
+    </script>
+  </head>
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Frequently Asked Questions</h1>
+            </div>
+
+            <div class="content">
+                <h2 class="content-subhead">What information about me does SteemLogin store?</h2>
+                <p>
+                  SteemLogin stores your Steem username and private posting key.<br/>
+                  Nothing else.
+                </p>
+
+                <h2 class="content-subhead">What if I enter the wrong key by accident?</h2>
+                <h2 class="content-subhead">Where does SteemLogin store my Steem details?</h2>
+                <h2 class="content-subhead">What happens if I change my posting key?</h2>
+                <h2 class="content-subhead">What information does SteemLogin provide to the Steem application?</h2>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+</html>

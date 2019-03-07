@@ -23,31 +23,14 @@
             <link rel="stylesheet" href="css/steemlogin.css">
             <link rel="stylesheet" href="css/layouts/side-menu.css">
         <!--<![endif]-->
-  </head>
-  <body>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+        fetch('/menu.html').then(response => response.text())
+          .then(html => document.getElementById('menu').innerHTML = html)
+        })
     </script>
-
+  </head>
+  <body>
     <div id="layout">
         <!-- Menu toggle -->
         <a href="#menu" id="menuLink" class="menu-link">
@@ -56,28 +39,6 @@
         </a>
 
         <div id="menu">
-            <div class="pure-menu">
-                <a class="pure-menu-heading" href="#">SteemLogin</a>
-
-                <ul class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected">
-                        <a href="#" class="pure-menu-link">Home</a>
-                    </li>
-                    <li class="pure-menu-item">
-                        <a href="#" class="pure-menu-link">FAQ</a>
-                    </li>
-                    <li class="pure-menu-item">
-                        <a href="/register.html" class="pure-menu-link">Register your App</a>
-                    </li>
-                    <li class="pure-menu-item">
-                        <a href="#" class="pure-menu-link">Developers</a>
-                    </li>
-
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Support</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Terms of Use</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Privacy Policy</a></li>
-                </ul>
-            </div>
         </div>
 
         <div id="main">
