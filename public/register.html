@@ -16,7 +16,10 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         fetch('/menu.html').then(response => response.text())
-          .then(html => document.getElementById('menu').innerHTML = html)
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linkregister').className += ' pure-menu-selected'
+          })
         })
     </script>
   </head>
@@ -93,7 +96,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th>Deveopment Failure URL</th>
+                    <th>Development Failure URL</th>
                     <td>NO</td>
                     <td>
                       This URL can be specified to redirect users to your development site after failure to authenticate or retrieved the Steem details

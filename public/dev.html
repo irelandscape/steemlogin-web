@@ -18,7 +18,10 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         fetch('/menu.html').then(response => response.text())
-          .then(html => document.getElementById('menu').innerHTML = html)
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linkdev').className += ' pure-menu-selected'
+          })
         })
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
@@ -136,7 +139,39 @@
 			...
           })
         })
-		  </pre>
+              </pre>
+              <hr/>
+              <hr/>
+
+              <h2 class="content-subhead">
+                Testing your app before deployment
+              </h2>
+              <p>
+                SteemLogin supports redirecting users to your development URLs so that you can test the authentication process before deployment to your production server.
+              </p>
+              <p>
+                Simply let us know your desired success and failure development URLs, as indicated on the <a href="/register.html" alt="registration page">app registration page</a>.
+              </p>
+              <p>
+                Make sure then to specify the <i>dev</i> query parameter when linking the steemlogin authentication gateway.<br/>
+                For example:
+              </p>
+              <pre>
+                https://auth.steemlogin.net?app=myapp&amp;dev
+              </pre>
+
+              <h2 class="content-subhead">
+                Testing an authentication failure
+              </h2>
+              <p>
+                You can test a failure condition during authentication. SteemLogin will then redirect the user to your authentication failure URL.
+              </p>
+              <p>
+                To test this, simply supply the <i>testfailure</i> query parameter. For example:
+              </p>
+              <pre>
+                https://auth.steemlogin.net?app=myapp&amp;dev&amp;testfailure
+              </pre>
             </div>
         </div>
     </div>

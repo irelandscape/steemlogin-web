@@ -16,7 +16,10 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         fetch('/menu.html').then(response => response.text())
-          .then(html => document.getElementById('menu').innerHTML = html)
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linkhome').className += ' pure-menu-selected'
+          })
         })
     </script>
   </head>
@@ -89,7 +92,7 @@
                 <p>
                     There, he/she will be presented with the following authentication options:
                 </p>
-                <img src='https://i.postimg.cc/434WpLZb/Screenshot-2019-03-06-13-58-15.png' border='0' alt='Authentication choices'/>
+                <img src='https://i.postimg.cc/fbPxWdwx/Screenshot-from-2019-03-14-20-04-06.png' border='0' alt='Authentication choices'/>
                 <p>
                     The user selects his/her authentication provider of choice and completes the verification procedure that he/she is accustomed to.
                 </p>
@@ -101,16 +104,20 @@
                     Upon successfully authenticating with the provider, the user is redirected to the SteemLogin application.
                 </p>
                 <p>
-                    SteemLogin checks if the user Steem details (username and posting key) is available in its database and if these details are still valid.
+                    SteemLogin retrieves all stored Steem account details (usernames and posting keys), if available, from its database and checks if these details are still valid.
                 </p>
                 <p>
-                    If this is the case, he/she is automatically redirected to the Steem application. A unique authorization code is also supplied to the application.
+                    The user is then invited to select his/her account of choice or add another Steem account into the system.
+                </p>
+                <img src="https://i.postimg.cc/sDFCQHnL/Screenshot-from-2019-03-14-20-10-08.png" border="0" alt="Choose Steem account"/>
+                <p>
+                    Once a Steem account has been selected, SteemLogin redirects the user to the Steem application.<br/>
+                    In the process a unique authorization code is supplied to the app which allows it to retrieves securely the account details.
                 </p>
                 <p>
-                    The Steem application securely retrieves the Steem username and posting key from SteemLogin by supplying the authorization code.
+                    The Steem application can now use the Steem username and posting key with the Steem blockchain for all operations requiring authentication.
                 </p>
                 <p>
-                    The Steem application can now use the Steem username and posting key with the Steem blockchain for all operations requiring authentication.<br/>
                     The user is logged in.
                 </p>
                 <img src='https://i.postimg.cc/DZzWnshc/Screenshot-2019-03-06-14-19-46.png' border='0' alt='User is logged in'/>
@@ -121,7 +128,7 @@
                 <p>
                     If not, the user is presented with a form allowing him/her to type in those details.
                 </p>
-                <img src='https://i.postimg.cc/zGVqjrN0/Screenshot-2019-03-06-14-22-46.png' border='0' alt='Steem details form'/>
+                <img src='https://i.postimg.cc/XYRjVNRr/Screenshot-from-2019-03-14-20-05-33.png' border='0' alt='Steem details form'/>
                 <p>
                     The Steem details are automatically checked before allowing the user to submit the form and be redirected to the Steem app.
                 </p>
@@ -182,7 +189,7 @@
 
                 <h2 class="content-subhead">I'm in! Where do I start?</h2>
                 <p>
-                    If you would like to integrate SteemLogin within your app, simply <a href="/register.html">register you app</a> and check our <a href="/developers.html">Developers</a> page to find out how easy it is to upgrade your code!
+                    If you would like to integrate SteemLogin within your app, simply <a href="/register.html">register you app</a> and check our <a href="/dev.html">Developers</a> page to find out how easy it is to upgrade your code!
                 </p>
             </div>
         </div>

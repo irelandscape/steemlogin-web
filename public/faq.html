@@ -16,7 +16,10 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         fetch('/menu.html').then(response => response.text())
-          .then(html => document.getElementById('menu').innerHTML = html)
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linkfaq').className += ' pure-menu-selected'
+          })
         })
     </script>
   </head>
@@ -66,6 +69,11 @@
                   If the Steem details verification fails, the user is prompted to enter a new valid Steem username and posting key.
                 </p>
 
+                <h2 class="content-subhead">Does SteemLogin support multiple Steem accounts per user?</h2>
+                <p>
+                  Yes, you are free to submit as many Steem accounts as you wish for the same Google/FB/Twitter/GitHub user.
+                </p>
+
                 <h2 class="content-subhead">What information does SteemLogin provide to the Steem application?</h2>
                 <p>
                   SteemLogin supplies the Steem username and private posting key of the authenticated user to the Steem application along with the authentication provider identity (e.g. 'google.com') and the authentication tokens provided by this authentication provider.
@@ -76,6 +84,15 @@
                 </p>
                 <p>
                   Future versions of SteemLogin may expand on this and allow the Steem application to request wider authorization scopes from the authentication providers. This could be used in the future to provide better integration between the Steem applications and Google, Facebook, etc.
+                </p>
+
+                <h2 class="content-subhead">How do I remove my Steem account details from SteemLogin?</h2>
+                <p>
+                  A "delete" button is presented to the user beside each Steem username when the user is offered to chose an account.
+                </p>
+                <p>
+                  Upon clicking this button the user is asked to confirm if he/she would like to remove this account from SteemLogin.<br/>
+                  Once confirmed, the account details are then removed from our system.
                 </p>
 
                 <h2 class="content-subhead">Do you provide an SDK?</h2>
@@ -97,6 +114,12 @@
                 <h2 class="content-subhead">Is SteemLogin opensource?</h2>
                 <p>
                   Yes, the source code can be downloaded and examined from our <a href="https://github.com/irelandscape/steemlogin" alt="GitHub repository">GitHub repository</a>.
+                </p>
+
+                <h2 class="content-subhead">Where can I get more help or make a suggestion?</h2>
+                <p>
+                  Please submit any query or suggestion to our Discord server:<br/>
+                  <a href="https://discord.gg/YrU9nsX" alt="SteemLogin Discord server">https://discord.gg/YrU9nsX</a>
                 </p>
             </div>
         </div>
