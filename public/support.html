@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <link rel="stylesheet" href="css/steemlogin.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/menu.html').then(response => response.text())
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linksupport').className += ' pure-menu-selected'
+          })
+        })
+    </script>
+  </head>
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Getting Help</h1>
+            </div>
+
+            <div class="content">
+              <p>
+                Do you need clarifications for any information presented on this web site?
+              </p>
+              <p>
+                Would you like some assistance with integrating SteemLogin within your Steem application?
+              </p>
+              <p>
+                Would you like to suggest any cool features for the future?
+              </p>
+              <p>
+                <strong>You can contact us on our Discord Server and we will make sure to get back to you promptly:</strong><br/>
+                <a href="https://discord.gg/YrU9nsX" alt="SteemLogin Discord server">https://discord.gg/YrU9nsX</a>
+              </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+</html>
+

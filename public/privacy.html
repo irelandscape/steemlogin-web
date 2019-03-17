@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SteemLogin</title>
+
+    <link rel="stylesheet" href="/css/steemlogin.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/layouts/side-menu.css">
+        <!--<![endif]-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/menu.html').then(response => response.text())
+          .then(html => {
+            document.getElementById('menu').innerHTML = html
+            document.getElementById('linkprivacy').className += ' pure-menu-selected'
+          })
+        })
+    </script>
+  </head>
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>SteemLogin Privacy Policy</h1>
+            </div>
+
+            <div class="content">
+              <p>
+                Protecting the personal information collected by SteemLogin is of paramount importance to us.
+              </p>
+              <p>
+                We limit the amount of collected information to its strict minimum and store on our server only what is necessary to operate the service.<br/>
+              </p>
+                SteemLogin acts as an authentication gateway between approved Steem applications (the "clients") and reputable authentication providers such as Google, Facebook, Twitter and GitHub.
+              </p>
+              <p>
+                Upon first use of our service our users are asked to enter their Steem username and posting key.<br/>
+                Those details are then stored within our <a href="https://firebase.google.com/docs/firestore">Cloud Firestore</a> database so that this information can be returned to the client upon future authentications.
+              </p>
+              <p>
+                Under no circumstances will stored Steem usernames and posting keys willingfuly be shared with third party individuals or organizations.
+              </p>
+              <p>
+                Some personal information is exchanged between SteemLogin and authentication providers during the authentication process.<br/>
+                This includes email adress and authentication tokens providing limited use of service with those authentication providers.<br/>
+                This information is forwarded to the clients upon successful completion of the authentication procedure.
+              </p>
+              <p>
+                The following sections provide detailed information about how we collect and use your personal information.
+              </p>
+
+              <h2 class="content-subhead">Personal information collected by SteemLogin</h2>
+              <p>
+                Steemlogin collects the following personal information during the authentication process:
+              </p>
+              <ul>
+                <li>Steem username</li>
+                <li>Steem private posting key</li>
+                <li>Email address, display name and provider identity returned by the authentication providers</li>
+              </ul>
+
+              <h2 class="content-subhead">Information stored within our server</h2>
+              <p>
+                SteemLogin only stores the Steem username and private posting key in a Cloud Firestore database.
+              <p>
+              <p>
+                An irreversible hash is used to uniquely identify users from their email address.<br/>
+                This avoids the need for storing email addresses within the database.
+              </p>
+              <h2 class="content-subhead">Personal information stored within the client (e.g. browser)</h2>
+              <p>
+                SteemLogin does not store any information within the client application.<br/>
+                This includes any information stored within local storage, cookies or indexdb database.
+              </p>
+
+              <h2 class="content-subhead">How we use your personal information</h2>
+              <p>
+                The personal information listed previously is provided to the client application which invoked the SteemLogin service upon successful authentication.
+              </p>
+              <p>
+                This information is transfered encrypted using HTTPs using an SSL certificate <a href="https://firebase.google.com/docs/hosting/custom-domain#wait_for_ssl_certificate_provisioning">provisioned by Firebase</a>.
+              </p>
+
+              <h2 class="content-subhead">How your personal information is stored</h2>
+              <p>
+                Your Steem usernames and private posting keys are stored within a <a href="https://firebase.google.com/docs/firestore">Cloud Firestore</a> database.
+              </p>
+              <p>
+                All information stored within the database is encrypted on disk and automatically decrypted upon retrieval by SteemLogin.
+              </p>
+              <p>
+                SteemLogin makes use of Cloud Firebase <a href="https://firebase.google.com/docs/firestore/security/get-started">security rules</a> to prevent anonymous and authenticated users to access personal information that is stored within records that they did not create in the first place.
+              </p>
+
+              <h2 class="content-subhead">Personal information sharing policy</h2>
+              <p>
+                SteemLogin will only transfer the personal information listed previously to the approved invoking application.
+              </p>
+              <p>
+                Under no circumstances will personal information be shared with other individuals or organizations.
+              </p>
+
+              <h2 class="content-subhead">Personal information removal</h2>
+              <p>
+                A user Steem username and private posting key can be deleted from SteemLogin at any time by accessing the following URL:
+                https://auth.steemlogin.net?delete
+              </p>
+
+              <h2 class="content-subhead">Policy Modifications</h2>
+              <p>
+                We may change this Privacy Policy from time to time.
+              </p>
+              <p>
+                As we do not keep any of our users' contact information, this change of policy would take place without notifications.
+              </p>
+              <p>
+                Any change in our privacy policy will be reflected on this web page.
+              </p>
+
+              <h2 class="content-subhead">Help and further clarifications</h2>
+              <p>
+                All enquiries regarding our privacy policy can be submitted to our Discord server:<br/>
+                <a href="https://discord.gg/YrU9nsX" alt="SteemLogin Discord server">https://discord.gg/YrU9nsX</a>
+              </p>
+
+              <h2 class="content-subhead">Limitation of liability</h2>
+              <p>
+                SteemLogin owners shall not be liable for any loss, damage, theft or misuse of the personal information listed on this page.
+              </p>
+              <p>
+                SteemLogin does not hold any responsibility for the manner in which personal information might be used, misused or leaked by the approved client applications.
+              </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+</html>
